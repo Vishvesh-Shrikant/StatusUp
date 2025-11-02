@@ -1,7 +1,11 @@
-import React from "react";
+import KanbanBoard from "@/components/tasks/kanban";
 
 const page = () => {
-  return <div>page</div>;
+  return (
+    <div className='p-12'>
+      <KanbanBoard />
+    </div>
+  );
 };
 
 export default page;

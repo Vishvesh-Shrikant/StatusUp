@@ -1,8 +1,9 @@
 export enum JobStatus {
   APPLIED = "Applied",
-  INTERVIEWING = "Interviewing",
-  OFFER_RECEIVED = "Offer Received",
+  INTERVIEW = "Interview",
+  OFFER = "Offer",
   REJECTED = "Rejected",
+  HIRED = "Hired",
 }
 
 export enum Priority {
