@@ -97,8 +97,8 @@ export default function SignInForm() {
   };
 
   return (
-    <div className='min-h-screen flex items-center justify-center bg-background px-4'>
-      <div className='w-full max-w-md border border-border rounded-lg shadow-md bg-card p-8 flex flex-col items-center space-y-6'>
+    <div className='flex items-center justify-center bg-background px-4 w-full'>
+      <div className='w-full max-w-md border border-border rounded-lg shadow-md bg-card p-6 flex flex-col items-center space-y-6'>
         {error && (
           <div className='rounded-md bg-destructive/15 px-3 py-2 text-sm text-destructive flex items-start gap-2 w-full'>
             <AlertCircle className='h-4 w-4 mt-0.5 shrink-0' />
@@ -117,8 +117,6 @@ export default function SignInForm() {
             </div>
           </div>
         )}
-
-        <h2 className='text-2xl font-semibold text-center'>Log In</h2>
 
         <Form {...form}>
           <form

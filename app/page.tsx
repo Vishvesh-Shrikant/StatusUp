@@ -1,11 +1,15 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle, Zap, Target, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const session = await getServerSession(authOptions);
+  if (session?.user) return redirect("/dashboard");
+
   return (
     <main className='min-h-screen bg-linea-to-b from-blue-50 via-white to-indigo-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 text-foreground transition-colors'>
       {/* Navigation */}

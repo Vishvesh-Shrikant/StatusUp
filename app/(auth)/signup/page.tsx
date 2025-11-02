@@ -131,14 +131,13 @@ export default function SignUpForm() {
 
   // ✅ Main form centered in middle of screen
   return (
-    <div className='min-h-screen flex justify-center items-center px-4'>
-      <div className='w-full max-w-md bg-background rounded-xl shadow-md p-8 space-y-4 border border-border flex flex-col justify-center items-center'>
+    <div className='flex justify-center items-center px-4 w-full'>
+      <div className='w-full max-w-md bg-background rounded-xl shadow-md p-6 space-y-4 border border-border flex flex-col justify-center items-center'>
         {error && (
           <div className='w-full rounded-md bg-destructive/15 px-3 py-2 text-sm text-destructive text-center'>
             {error}
           </div>
         )}
-        <h2 className='text-2xl font-semibold text-center'>Sign Up</h2>
 
         <Form {...form}>
           <form

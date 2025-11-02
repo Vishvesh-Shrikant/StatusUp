@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description:
     "The One Stop for tracking all job application for easy understanding and tarcking",
   icons: {
-    icon: { url: "metadata.png", sizes: "16x16", type: "image/png" },
+    icon: { url: "/metadata.png", sizes: "16x16", type: "image/png" },
   },
 };
 
