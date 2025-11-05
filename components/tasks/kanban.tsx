@@ -23,7 +23,7 @@ export default function KanbanBoard() {
   }, []);
 
   return (
-    <div className='w-full h-screen bg-linear-to-br from-background via-muted/10 to-background p-4 md:p-6'>
+    <div className='w-full bg-linear-to-br from-background via-muted/10 to-background p-4 md:p-6'>
       {/* Header Section */}
       <div className='mb-6'>
         <div className='flex items-center justify-between'>
@@ -43,7 +43,7 @@ export default function KanbanBoard() {
       </div>
 
       {/* Kanban Board */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 h-[calc(100vh-180px)] md:h-[calc(100vh-200px)]'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 min-h-screen'>
         <Column
           title='REJECTED'
           column='Rejected'
