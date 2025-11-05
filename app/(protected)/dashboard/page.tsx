@@ -2,7 +2,7 @@ import KanbanBoard from "@/components/tasks/kanban";
 
 const page = () => {
   return (
-    <div className='p-12'>
+    <div className='p-6'>
       <KanbanBoard />
     </div>
   );

@@ -18,7 +18,7 @@ export function ThemeToggle() {
       variant='ghost'
       size='icon'
       onClick={() => setTheme(isLight ? "dark" : "light")}
-      className='relative rounded-full'
+      className='relative rounded-full dark:hover:text-white'
     >
       <AnimatePresence mode='wait' initial={false}>
         {isLight ? (

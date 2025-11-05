@@ -5,6 +5,7 @@ import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { ThemeToggle } from "@/components/theme/themeToggle";
 
 export default async function LandingPage() {
   const session = await getServerSession(authOptions);
@@ -29,6 +30,7 @@ export default async function LandingPage() {
           </div>
         </div>
         <div className='flex items-center gap-4'>
+          <ThemeToggle />
           <Link
             href='/login'
             className='text-foreground/80 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium'
