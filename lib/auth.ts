@@ -37,7 +37,7 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials): Promise<User | null> {
         if (!credentials?.email || !credentials?.password) return null;
 
-        await connectDB(); // ensure DB is connected (important in serverless envs)
+        await connectDB();
         const user = await UserModel.findOne({
           email: credentials.email,
         }).select("+password");
@@ -48,10 +48,11 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Please verify your email before signing in.");
         }
 
-        const isValid = await bcrypt.compare(
-          credentials.password,
-          user.password
-        );
+        // ✅ Safe guard to satisfy TypeScript
+        const password = credentials.password as string;
+        const hash = user.password as string;
+
+        const isValid = await bcrypt.compare(password, hash);
         if (!isValid) return null;
 
         return {
