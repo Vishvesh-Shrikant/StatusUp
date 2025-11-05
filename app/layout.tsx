@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   description:
     "The One Stop for tracking all job application for easy understanding and tarcking",
   icons: {
-    icon: { url: "/metadata.png", sizes: "16x16", type: "image/png" },
+    icon: { url: "metadata.png", sizes: "16x16", type: "image/png" },
   },
 };
 
@@ -31,7 +32,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-        {children}
+        <ThemeProvider attribute='class' defaultTheme='light'>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
