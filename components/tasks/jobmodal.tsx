@@ -47,7 +47,7 @@ const jobSchema = z.object({
   salaryRange: z.string().optional(),
   location: z.string().optional(),
   notes: z.string().optional(),
-  link: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+  link: z.url("Must be a valid URL").optional().or(z.literal("")),
 });
 
 type JobFormData = z.infer<typeof jobSchema>;
@@ -137,25 +137,33 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
     <>
       {modalType !== "view" ? (
         <Dialog open onOpenChange={(open) => !open && onClose()}>
-          <DialogContent className='sm:max-w-[425px]'>
+          <DialogContent className='sm:max-w-[500px]'>
             <DialogHeader>
-              <DialogTitle>
-                {modalType === "edit" ? "Edit Job" : "Add Job"}
+              <DialogTitle className='text-xl font-semibold'>
+                {modalType === "edit"
+                  ? "Edit Job Application"
+                  : "Add New Job Application"}
               </DialogTitle>
             </DialogHeader>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className='space-y-4 max-h-[60vh] overflow-y-auto'
+                className='space-y-5 max-h-[65vh] overflow-y-auto pr-2'
               >
                 <FormField
                   control={form.control}
                   name='companyName'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Company Name *</FormLabel>
+                      <FormLabel className='text-sm font-medium'>
+                        Company Name *
+                      </FormLabel>
                       <FormControl>
-                        <Input {...field} placeholder='Enter company name' />
+                        <Input
+                          {...field}
+                          placeholder='Enter company name'
+                          className='focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors'
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -167,9 +175,15 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
                   name='role'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Role *</FormLabel>
+                      <FormLabel className='text-sm font-medium'>
+                        Role *
+                      </FormLabel>
                       <FormControl>
-                        <Input {...field} placeholder='Enter role/position' />
+                        <Input
+                          {...field}
+                          placeholder='Enter role/position'
+                          className='focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors'
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -181,11 +195,13 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
                   name='priority'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Priority *</FormLabel>
+                      <FormLabel className='text-sm font-medium'>
+                        Priority *
+                      </FormLabel>
                       <FormControl>
                         <select
                           {...field}
-                          className='w-full border border-input bg-background px-3 py-2 rounded-md'
+                          className='w-full border border-input bg-background px-3 py-2 rounded-md focus:outline-none focus:border-foreground/50 transition-colors'
                         >
                           <option value={Priority.LOW}>Low</option>
                           <option value={Priority.MEDIUM}>Medium</option>
@@ -202,12 +218,15 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
                   name='dateApplied'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Date Applied</FormLabel>
+                      <FormLabel className='text-sm font-medium'>
+                        Date Applied
+                      </FormLabel>
                       <FormControl>
                         <Input
                           type='date'
                           {...field}
                           max={new Date().toISOString().split("T")[0]}
+                          className='focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors'
                         />
                       </FormControl>
                       <FormMessage />
@@ -220,9 +239,15 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
                   name='salaryRange'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Salary Range</FormLabel>
+                      <FormLabel className='text-sm font-medium'>
+                        Salary Range
+                      </FormLabel>
                       <FormControl>
-                        <Input {...field} placeholder='e.g., $80k - $100k' />
+                        <Input
+                          {...field}
+                          placeholder='e.g., $80k - $100k'
+                          className='focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors'
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -234,9 +259,15 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
                   name='location'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Location</FormLabel>
+                      <FormLabel className='text-sm font-medium'>
+                        Location
+                      </FormLabel>
                       <FormControl>
-                        <Input {...field} placeholder='e.g., Remote, NYC' />
+                        <Input
+                          {...field}
+                          placeholder='e.g., Remote, NYC'
+                          className='focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors'
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -248,11 +279,14 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
                   name='link'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Job Posting Link</FormLabel>
+                      <FormLabel className='text-sm font-medium'>
+                        Job Posting Link
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           placeholder='https://example.com/job'
+                          className='focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors'
                         />
                       </FormControl>
                       <FormMessage />
@@ -265,12 +299,14 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
                   name='notes'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Notes</FormLabel>
+                      <FormLabel className='text-sm font-medium'>
+                        Notes
+                      </FormLabel>
                       <FormControl>
                         <textarea
                           {...field}
                           placeholder='Add any notes...'
-                          className='w-full min-h-20 border border-input bg-background px-3 py-2 rounded-md'
+                          className='w-full min-h-24 border border-input bg-background px-3 py-2 rounded-md focus:outline-none focus:border-foreground/50 transition-colors resize-none'
                         />
                       </FormControl>
                       <FormMessage />
@@ -278,17 +314,21 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
                   )}
                 />
 
-                <DialogFooter className='pt-4'>
+                <DialogFooter className='pt-4 gap-2'>
                   <DialogClose asChild>
-                    <Button type='button' variant='outline'>
+                    <Button
+                      type='button'
+                      variant='outline'
+                      className='min-w-[100px]'
+                    >
                       Cancel
                     </Button>
                   </DialogClose>
                   <Button
                     type='submit'
-                    className='text-background dark:text-foreground'
+                    className='text-background dark:text-foreground min-w-[100px]'
                   >
-                    {modalType === "edit" ? "Save changes" : "Add Job"}
+                    {modalType === "edit" ? "Save Changes" : "Add Job"}
                   </Button>
                 </DialogFooter>
               </form>
@@ -297,36 +337,46 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
         </Dialog>
       ) : (
         <Dialog open onOpenChange={(open) => !open && onClose()}>
-          <DialogContent className='sm:max-w-[425px]'>
+          <DialogContent className='sm:max-w-[500px]'>
             <DialogHeader>
-              <DialogTitle>View Job Application</DialogTitle>
+              <DialogTitle className='text-xl font-semibold'>
+                Job Application Details
+              </DialogTitle>
             </DialogHeader>
 
-            <div className='space-y-4'>
+            <div className='space-y-4 max-h-[65vh] overflow-y-auto pr-2'>
               <div>
-                <Label>Company Name</Label>
-                <p className='border border-primary rounded-md p-2 text-foreground mt-1'>
+                <Label className='text-sm font-medium text-muted-foreground'>
+                  Company Name
+                </Label>
+                <p className='bg-muted/50 rounded-md p-3 text-foreground mt-1.5 font-medium'>
                   {card?.companyName}
                 </p>
               </div>
 
               <div>
-                <Label>Role</Label>
-                <p className='border border-primary rounded-md p-2 text-foreground mt-1'>
+                <Label className='text-sm font-medium text-muted-foreground'>
+                  Role
+                </Label>
+                <p className='bg-muted/50 rounded-md p-3 text-foreground mt-1.5 font-medium'>
                   {card?.role}
                 </p>
               </div>
 
               <div>
-                <Label>Priority</Label>
-                <p className='border border-primary rounded-md p-2 text-foreground mt-1'>
+                <Label className='text-sm font-medium text-muted-foreground'>
+                  Priority
+                </Label>
+                <p className='bg-muted/50 rounded-md p-3 text-foreground mt-1.5 font-medium capitalize'>
                   {card?.priority}
                 </p>
               </div>
 
               <div>
-                <Label>Date Applied</Label>
-                <p className='border border-primary rounded-md p-2 text-foreground mt-1'>
+                <Label className='text-sm font-medium text-muted-foreground'>
+                  Date Applied
+                </Label>
+                <p className='bg-muted/50 rounded-md p-3 text-foreground mt-1.5 font-medium'>
                   {card?.dateApplied
                     ? format(new Date(card.dateApplied), "dd MMMM yyyy")
                     : "Not specified"}
@@ -335,8 +385,10 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
 
               {card?.salaryRange && (
                 <div>
-                  <Label>Salary Range</Label>
-                  <p className='border border-primary rounded-md p-2 text-foreground mt-1'>
+                  <Label className='text-sm font-medium text-muted-foreground'>
+                    Salary Range
+                  </Label>
+                  <p className='bg-muted/50 rounded-md p-3 text-foreground mt-1.5 font-medium'>
                     {card.salaryRange}
                   </p>
                 </div>
@@ -344,8 +396,10 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
 
               {card?.location && (
                 <div>
-                  <Label>Location</Label>
-                  <p className='border border-primary rounded-md p-2 text-foreground mt-1'>
+                  <Label className='text-sm font-medium text-muted-foreground'>
+                    Location
+                  </Label>
+                  <p className='bg-muted/50 rounded-md p-3 text-foreground mt-1.5 font-medium'>
                     {card.location}
                   </p>
                 </div>
@@ -353,13 +407,15 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
 
               {card?.link && (
                 <div>
-                  <Label>Job Posting Link</Label>
-                  <p className='border border-primary rounded-md p-2 text-foreground mt-1'>
+                  <Label className='text-sm font-medium text-muted-foreground'>
+                    Job Posting Link
+                  </Label>
+                  <p className='bg-muted/50 rounded-md p-3 text-foreground mt-1.5'>
                     <a
                       href={card.link}
                       target='_blank'
                       rel='noopener noreferrer'
-                      className='text-blue-500 hover:underline'
+                      className='text-blue-600 dark:text-blue-400 hover:underline break-all'
                     >
                       {card.link}
                     </a>
@@ -367,13 +423,28 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
                 </div>
               )}
 
-              <div>
-                <Label>Notes</Label>
-                <p className='border border-primary rounded-md p-2 text-foreground mt-1'>
-                  {card?.notes ? card.notes : "No notes provided"}
-                </p>
-              </div>
+              {card?.notes && (
+                <div>
+                  <Label className='text-sm font-medium text-muted-foreground'>
+                    Notes
+                  </Label>
+                  <p className='bg-muted/50 rounded-md p-3 text-foreground mt-1.5 whitespace-pre-wrap'>
+                    {card.notes}
+                  </p>
+                </div>
+              )}
             </div>
+
+            <DialogFooter className='pt-4'>
+              <DialogClose asChild>
+                <Button
+                  variant='outline'
+                  className='min-w-[100px] bg-primary! hover:bg-primary/80 text-white cursor-pointer'
+                >
+                  Close
+                </Button>
+              </DialogClose>
+            </DialogFooter>
           </DialogContent>
         </Dialog>
       )}

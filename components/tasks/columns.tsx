@@ -107,13 +107,27 @@ export default function Column({
   };
 
   const filteredCards = allJobs.filter((job) => job.status === column);
+
   return (
     <div className='w-full shrink-0'>
-      <div className='mb-3 flex items-center justify-between'>
-        <h3 className='font-medium' style={{ color }}>
-          {title}
-        </h3>
-        <span className='rounded text-sm text-neutral-400'>
+      <div className='mb-4 flex items-center justify-between bg-linear-to-r from-muted/80 to-muted/40 rounded-lg px-4 py-3 border border-border/50 shadow-sm'>
+        <div className='flex items-center gap-3'>
+          <div
+            className='w-1 h-6 rounded-full shadow-md'
+            style={{ backgroundColor: color }}
+          />
+          <h3 className='font-semibold text-base' style={{ color }}>
+            {title}
+          </h3>
+        </div>
+        <span
+          className='rounded-full px-3 py-1 text-sm font-medium shadow-sm'
+          style={{
+            backgroundColor: `${color}20`,
+            color: color,
+            border: `1px solid ${color}40`,
+          }}
+        >
           {filteredCards.length}
         </span>
       </div>
@@ -122,9 +136,14 @@ export default function Column({
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
-        className={`h-full w-full transition-colors space-y-1 ${
-          active ? "bg-neutral-200/50" : "bg-neutral-800/0"
+        className={`min-h-[500px] rounded-xl p-3 transition-all duration-300 space-y-2.5 ${
+          active
+            ? "bg-linear-to-br from-muted/60 to-muted/30 border-2 border-dashed shadow-inner scale-[1.02]"
+            : "bg-muted/20 border border-transparent"
         }`}
+        style={{
+          borderColor: active ? `${color}60` : "transparent",
+        }}
       >
         {filteredCards.map((card) => (
           <Card
@@ -152,10 +171,17 @@ export default function Column({
           <motion.button
             layout
             onClick={() => setAdding(true)}
-            className='flex w-full cursor-pointer items-center gap-1.5 px-3 py-1.5 text-xs text-foreground dark:text-foreground hover:text-neutral-700 dark:hover:text-neutral-50'
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className='flex w-full cursor-pointer items-center justify-center gap-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 border-2 border-dashed hover:shadow-md mt-2'
+            style={{
+              borderColor: `${color}40`,
+              color: color,
+              backgroundColor: `${color}10`,
+            }}
           >
-            <span>Add card</span>
-            <Plus />
+            <Plus className='w-4 h-4' />
+            <span>Add new card</span>
           </motion.button>
         )}
       </div>
