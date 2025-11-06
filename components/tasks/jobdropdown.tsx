@@ -40,10 +40,10 @@ const JobDropdown = ({ card, deleteJob }: Props) => {
           {/* ✅ EDIT item */}
           <DropdownMenuItem
             onClick={() => setIsEditing(true)}
-            className='cursor-pointer group flex items-center gap-2 rounded-md px-3 py-2 text-sm text-black dark:text-white hover:bg-neutral-200! dark:hover:bg-neutral-800! transition-colors'
+            className='cursor-pointer group flex items-center gap-2 rounded-md px-3 py-2 text-sm text-black hover:bg-neutral-200! dark:hover:bg-neutral-800! transition-colors'
           >
             <Pencil className='w-4 h-4' />
-            <span className='text-black'>Edit</span>
+            <span className='text-black dark:text-white'>Edit</span>
           </DropdownMenuItem>
 
           {/* ✅ DELETE item */}
