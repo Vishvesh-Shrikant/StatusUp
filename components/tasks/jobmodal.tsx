@@ -39,7 +39,6 @@ const jobSchema = z.object({
         if (!val) return true;
         const selected = new Date(val);
         const now = new Date();
-        now.setHours(0, 0, 0, 0);
         return selected <= now;
       },
       { message: "Application date cannot be in the future" }
@@ -319,14 +318,14 @@ const JobModal = ({ modalType, card, column, onClose }: Props) => {
                     <Button
                       type='button'
                       variant='outline'
-                      className='min-w-[100px]'
+                      className='min-w-[100px] cursor-pointer'
                     >
                       Cancel
                     </Button>
                   </DialogClose>
                   <Button
                     type='submit'
-                    className='text-background dark:text-foreground min-w-[100px]'
+                    className='text-background dark:text-foreground min-w-[100px] cursor-pointer'
                   >
                     {modalType === "edit" ? "Save Changes" : "Add Job"}
                   </Button>
